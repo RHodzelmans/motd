@@ -57,38 +57,38 @@ def run_module():
     module.exit_json(**result)
 
 #
-def perform_change(module_args, result)
+def perform_change(module_args, result):
     input = module_args.params['message']
     result['original_message'] = input
     
     file_loc = module_args.params['motd']
     original_text = read_file()
 
-    if input in original_text
+    if input in original_text:
         result['changed'] = True
 
-        if module_args['when'] = When.BEFORE
+        if module_args['when'] = When.BEFORE:
             result['new_message'] = prefix_file(file_loc, input)
-        else
+        else:
             result['new_message'] = append_file(file_loc, input)
-    else 
+    else: 
         result['new_message'] = 'Same as previous input'
     
 # read String message to File at location
-def read_file(motd)
+def read_file(motd):
     f = open(motd, 'r') 
     read_message = f.read(message)
     f.close()
     return read_message
 
 # append String message to File at location
-def append_file(motd, message)
+def append_file(motd, message):
     f = open(motd, 'a') 
     f.write(message)
     f.close
 
 # write String message to File at location before existing content
-def prefix_file(motd, message)
+def prefix_file(motd, message):
     f = open(motd, 'w') 
     original_text = f.read()
     f.write(message + original_text)
